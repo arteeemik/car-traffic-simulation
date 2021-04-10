@@ -12,7 +12,71 @@ class Interval(NamedTuple):
 
 
 class Experiment:
-    """docstring"""
+    """Класс Experiment используется для процесса моделирования движения на автостраде
+
+    Attributes
+    ----------
+    __time : float
+        Текущее время в этом эксперименте
+    __interval_speed_car : Interval[float, float]
+        Диапазон начальных скоростей автомобилей
+    __interval_low_speed_car : Interval[float, float]
+        Диапазон уменьшенных скоростей автомобилей
+    __interval_time_low_speed_car : Interval[float, float]
+        Диапазон частоты случайного искусственного замедления автомобилей
+    __interval_duration_low_speed_car : Interval[float, float]
+        Диапазон времени движения автомобилей с искусственно замедленной скоростью
+    __interval_frequency_appearance_cars : Interval[float, float]
+        Диапазон частоты появления автомобилей
+    __roads : List[Road]
+        Дороги, которые есть в этом эксперименте
+    __time_scaling : float
+        Коэффициент масштабируемости времени
+    __lane_to_slow : float
+        Координата полосы на дороге, после которой машины искусственно замедляются
+    __need_random_slow : Bool
+        Выключатель случайного искусственного замедления автомобилей
+
+    Methods
+    -------
+    tick()
+        Обновляет текущее состояние эксперимента в зависимости от того, сколько прошло времени
+
+    update_need_random_slow(need_random_slow: bool)
+        Читает файл и сохраняет его в виде списка строк в lines
+
+    update_lane_to_slow(lane_to_slow: Optional[float])
+        Обновляет точку на дорожной полосе, где будет стоять линия,
+        после которой автомобили будут искусственного замедляться
+
+    get_time_to_creat_new_car(current_time: float)
+        Получает время(в будущем), когда должна быть создана новая машина
+
+    get_time_to_slow_down_car(current_time: float)
+        Получает время(в будущем), когда должна быть искусственно замедлена
+
+    get_duration_slow_down_car()
+        Получает длительность движения автомобиля с искусственно замедленной скоростью
+
+    get_speed_car()
+        Получает начальную скорость автомобиля
+
+    get_low_speed_for_car()
+        Получает замедленную скорость автомобиля
+
+    update_time_scaling(new_time_scaling: float)
+        Обновляет коэффициент масшатабируемости времени
+
+    get_time_scaling()
+        Получает коэффициент масшатабируемости времени
+
+    update_time_to_resolve_accident(new_time_to_resolve_accident: float)
+        Обновление времени, которое необходимо для разрешения аварии на дорожной полосе
+
+    get_params_for_drawing()
+        Получение необходимых параметров для модуля отрисовки эксперимента
+
+    """
 
     def __init__(self, len_road: float, interval_speed_car: Interval,
                  interval_low_speed_car: Interval, interval_time_low_speed_car: Interval,

@@ -1,7 +1,71 @@
 
 
 class Car:
-    """docstring"""
+    """Класс Car - класс автомобиля
+
+    Attributes
+    ----------
+    speed : float
+        Текущая скорость автомобиля
+    low_speed : Optional[float]
+        Уменьшенная скорость автомобиля
+    time_to_end_low_speed : Optional[float]
+        Время, когда машина может начать двигаться с начальной скоростью
+    current_position : float
+        Текущее положение автомобиля на полосе
+    body_length : float
+        Длина корпуса автомобиля
+    time_accident : Optional[float]
+        Время аварии, в которую попала машина
+    already_slow_with_line : Bool
+        Был ли уже искусственно замедлен автомобиль линией на полосе
+
+    Methods
+    -------
+    is_car_in_accident()
+        Возвращает true/false в зависимости от того, находится ли сейчас автомобиль в состоянии аварии
+
+    is_car_slow_dawn()
+        Возвращает true/false, в зависимости от того замедлен ли искусственно автомобиль
+
+    get_time_slow_speed()
+        Получение времени, когда автомобиль был искусственно замедлен
+
+    make_init_speed()
+        Изменить текущую скорость автомобиля на начальную скорость
+
+    get_current_speed()
+        Получение текущей скорости автомобиля
+
+    get_time_accident()
+        Получение времени, когда машина попала в аварию
+
+    make_accident(current_time: float)
+        Обновить состояние машины, которая попала в аварию
+
+    update(last_time, current_time, time_scaling, position_next_car=None, next_speed_car=None)
+        Обновить состояние машины на полосе за определенный промежуток времени (публичная функция)
+
+    __update_current_state_if_low_speed(last_time, current_time, time_scaling, position_next_car=None, next_speed_car=None)
+        Обновить состояние машины на полосе за определенный промежуток времени, если машины искусственно замедлена
+
+    __update_current_state(last_time, current_time, time_scaling, position_next_car=None, next_speed_car=None)
+        Обновить состояние машины на полосе за определенный промежуток времени
+
+    slow_dawn(need_slow_speed, time_to_end_low_speed)
+        Искусственно замедлить скорость. Используется для случайного искусственного замедления автомобилей
+
+    get_body_length():
+        Получение длины корпуса автомобиля
+
+    is_slow_with_line():
+        Возвращает true/false, в зависимости от того,
+        была ли машина искусственно замедлена линией на дорожной полосе
+
+    make_slow_with_line(need_slow_speed: float, time_to_end_low_speed: float):
+        Искусственно замедлить автомобиль из-за того, что он пересек линию на дорожной полосе
+
+    """
 
     def __init__(self, init_speed: float, body_length: float):
         self.speed = 0

@@ -4,7 +4,51 @@ from .car import Car
 
 
 class Lane:
-    """docstring"""
+    """Класс Car - класс автомобиля
+
+    Attributes
+    ----------
+    len_road : float
+        Длина дороги
+    cars : List[Car]
+        Список автомобилей на этой полосе
+    need_time_to_resolve_accident : float
+        Время необходимое для разрешения аварии на полосе
+    time_to_create_new_car : float
+        Время для создания нового автомобиля
+    time_to_slow_dawn : float
+        Время, когда машина случайная должна искусственного замедлиться
+
+    Methods
+    -------
+    update(last_time: float, current_time: float, experiment, body_length: float, time_scaling: float, lane_to_slow: float, need_random_slow: bool)
+        Обновляет текущее состояние полосы в определенный промежуток времени
+
+    __is_enough_time_to_clean_up_car(current_time, time_accident, time_scaling)
+        Возвращает true/false в зависимости от того, достаточно ли прошло времени, чтобы удалить машины с полосы
+
+    __try_create_car(current_time, experiment, body_length)
+        Попытаться добавить новую машины на полосу
+
+    __updated_cars_created_time(current_time, experiment)
+        Обновить время создания новой машины на полосе
+
+    __remove_cars(numbers_of_cars_to_delete)
+        Удалить машины с полосы
+
+    __update_accidents(current_time)
+        Обновления состояния всех аварий, которые произошли на этой полосе
+
+    __get_position_and_speed_next_car(current_position)
+        Получение текущей позиции и скорости автомобиля, который идет после позиции current_position
+
+    get_cars_to_make_picture()
+        Получение автомобилей на этой полосе для модуля отрисовки
+
+    update_time_to_resolve_accident(new_time_to_resolve_accident)
+        Обновление времени, которое необходимо для разрешения аварий на этой полосе
+
+    """
 
     def __init__(self, len_road: float, need_time_to_resolve_accident: float):
         self.len_road = len_road
